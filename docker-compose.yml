@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  simpsonsgenkendelse:
+    image: simpsonsgenkendelse
+    build:
+      context: .
+      dockerfile: ./Dockerfile
