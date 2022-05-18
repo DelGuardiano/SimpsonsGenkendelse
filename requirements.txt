@@ -2,6 +2,8 @@ streamlit
 matplotlib
 seaborn
 pandas
-tensorflow-cpu
+tensorflow
 split-folders
-opencv-python
+numpy
+pymongo
+keras
