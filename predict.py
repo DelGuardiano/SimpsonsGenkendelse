@@ -1,4 +1,4 @@
-from keras.preprocessing.image import img_to_array, load_img
+from keras_preprocessing.image import img_to_array, load_img
 from keras.models import load_model
 import numpy as np
 import pandas as pd
