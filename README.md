@@ -10,3 +10,5 @@ Når det så passer, kan man kører py -m streamlit run {Den rigtige path}app.py
 Når programmet så kører, kan man uploade et billed, som programmet så kører en prediction på 
 
 Hvis man går ind på statistik siden, kan man se statistik over dataen som er gemt i databasen, samt se statistik over modellens accuracy 
+
+PT. Modellen følger ikke med på github, da filen er for stor til at uploade. 
