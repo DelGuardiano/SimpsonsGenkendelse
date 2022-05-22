@@ -29,24 +29,30 @@ labels = Karakterer().get_name()
 
 class Bruger():
     def get_user(self, user):
-        user = list(db.Brugere.find({'brugernavn': user}))
+        user = db.Brugere.find({'brugernavn': user})
         return user
     
     def create_user(self, user, password):
         db.Brugere.insert_one({'Brugernavn': user, 'Password': password})
 
 save_new_user = Bruger().create_user
+get_current_user = Bruger().get_user(user = "Lisa")
+
 
 date = datetime.datetime.now() 
 dt = date.strftime("%d-%m-%Y %H:%M:%S")
 author = "admin"
 
 class Gem():
-    def add_to_database(self, img, name, author, date):
-        db.Forudsigelse.insert_one({"Navn": name, "Billed": img, "Forfatter": author, "Oprettelsesdato": dt})
+    def add_to_database_sandt(self, img, name, author, date, prediction):
+        db.Forudsigelse.insert_one({"Navn": name, "Billed": img, "Forfatter": author, "Oprettelsesdato": dt, "Forudsigelse": "Korrekt"})
+    
+    def add_to_database_falsk(self, img, name, author, date, prediction):
+        db.Forudsigelse.insert_one({"Navn": name, "Billed": img, "Forfatter": author, "Oprettelsesdato": dt, "Forudsigelse": "Ikke korrekt"})
 
 
-add_to_database = Gem().add_to_database
+add_to_database_sandt = Gem().add_to_database_sandt
+add_to_database_falsk = Gem().add_to_database_falsk
 
 class Forudsigelse():
     def get_all(self):
@@ -61,9 +67,14 @@ class Forudsigelse():
         data = list(db.Forudsigelse.find({}, {'_id': False, 'img': False, 'name': False, 'date': False}).sort("author", +1))
         return data
     
-    def get_time(self):
+    def get_data(self):
         data = list(db.Forudsigelse.find({}, {'_id': False, 'img': False, 'name': False, 'author': False}).sort("date", +1))
         return data
+    
+    def get_prediction(self):
+        data = list(db.Forudsigelse.find({}, {'_id': False, 'img': False, 'name': False, 'author': False, 'date': False}).sort("prediction", +1))
+        return data
+    
 
 former_prediction = Forudsigelse().get_all()
 

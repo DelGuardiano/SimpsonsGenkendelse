@@ -1,11 +1,13 @@
+from imaplib import _Authenticator
+from sre_parse import State
 import streamlit as st
 from dal import *
 
 def show_login_page():     
     st.title("Login")
     st.write("Indtast dit brugernavn og password")
-    brugernavn = st.text_input("Brugernavn")
-    password = st.text_input("Password" , type="password")
+    brugernavn = st.text_input("Brugernavn", value="")
+    password = st.text_input("Password" , type="password", value="")
 
     login = st.button("Login")
     opret_ny_bruger = st.button("Opret ny bruger")
@@ -25,3 +27,5 @@ def show_login_page():
         else:
             save_new_user(brugernavn, password)
             st.success("Du er nu oprettet en ny bruger")
+
+    

@@ -36,7 +36,7 @@ def show_statistik_page():
     data = df.groupby(["name"])["test"].mean().sort_values(ascending=False)
     st.line_chart(data)
 
-    st.write("""#### Diagram over accruacy for modellen ####""")
+    st.write("""#### Diagram over accuracy for modellen ####""")
     data = Image.open(legendplot)
     st.image(data, width=500)
 

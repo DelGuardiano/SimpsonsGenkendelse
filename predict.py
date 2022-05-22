@@ -48,11 +48,13 @@ def show_prediction_page():
             falsk = st.button("Falsk")
 
         if sandt:
-            add_to_database(uploaded_file.name, prediction, author, datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S"))
+            add_to_database_sandt(uploaded_file.name, prediction, author, datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S"), "Sandt")
             st.success("Din forudsigelse er gemt") 
             st.balloons()
         if falsk:
-            st.warning("Prøv igen")
+            st.success("Din forudsigelse er gemt")
+            add_to_database_falsk(uploaded_file.name, prediction, author, datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S"), "Falsk")
+            st.balloons()
 
 
     

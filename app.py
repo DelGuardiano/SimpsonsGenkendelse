@@ -5,9 +5,11 @@ from formerPredictions import show_formerPredictions_page
 from login import show_login_page
 from dal import *
 
-currentuser = ""
+#currentuser = get_current_user
+currentuser = "Bart Simpson"
 st.sidebar.write("Du er logget ind som: {}".format(currentuser))
 st.sidebar.write("Vælg en side")
+
 page = st.sidebar.selectbox("", ("Login", "Forudsigelse", "Statistik", "Tidligere forudsigelser"))
 
 if page == "Forudsigelse":
