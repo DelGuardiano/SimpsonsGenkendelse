@@ -1,1 +1,3 @@
 py -m streamlit run D:\SimpsonsGenkendelse\app.py
+
+py -m streamlit run c:\Users\surin\OneDrive\Dokumenter\GitHub\4-Semester-Projekt\app.py
