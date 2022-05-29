@@ -14,7 +14,6 @@ def load_data():
 
 df = load_data()
 
-
 def show_statistik_page():
     st.title("Statistik")
     st.subheader("Statistik over billeder af Simpsons karakterer")

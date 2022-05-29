@@ -4,6 +4,7 @@ import datetime
 cluster = MongoClient("mongodb+srv://Admin:admin@cluster0.nrum9.mongodb.net/4SemesterProjekt?retryWrites=true&w=majority")
 db = cluster["4SemesterProjekt"]
 
+
 class Karakterer():  
     def get_all(self):
         data = list(db.Karakterer.find({}))
@@ -27,21 +28,18 @@ class Karakterer():
     
 labels = Karakterer().get_name() 
 
-class Bruger():
-    def get_user(self, user):
-        user = db.Brugere.find({'brugernavn': user})
-        return user
-    
+class Bruger():        
+    def find_user(self, user, password): 
+        findes = db.Brugere.count_documents({"Brugernavn": user, "Password": password}) > 0
+        return findes
+
     def create_user(self, user, password):
         db.Brugere.insert_one({'Brugernavn': user, 'Password': password})
 
 save_new_user = Bruger().create_user
-get_current_user = Bruger().get_user(user = "Lisa")
-
 
 date = datetime.datetime.now() 
 dt = date.strftime("%d-%m-%Y %H:%M:%S")
-author = "admin"
 
 class Gem():
     def add_to_database_sandt(self, img, name, author, date, prediction):
@@ -49,7 +47,6 @@ class Gem():
     
     def add_to_database_falsk(self, img, name, author, date, prediction):
         db.Forudsigelse.insert_one({"Navn": name, "Billed": img, "Forfatter": author, "Oprettelsesdato": dt, "Forudsigelse": "Ikke korrekt"})
-
 
 add_to_database_sandt = Gem().add_to_database_sandt
 add_to_database_falsk = Gem().add_to_database_falsk

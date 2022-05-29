@@ -7,8 +7,10 @@ from dal import *
 from localPath import *
 from login import *
 import datetime 
+from login import currentuser
 
 model = load_model(modelpath)
+
 
 @st.cache
 def predict(img):
@@ -39,7 +41,7 @@ def show_prediction_page():
     
     if uploaded_file is not None:
         st.write("Er det rigtigt? Klik på knappen nedenfor")
-
+        author = currentuser()
         col1, col2 = st.columns([1,1])
 
         with col1:
