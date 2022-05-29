@@ -1,5 +1,4 @@
 from pymongo import MongoClient
-import datetime
 
 cluster = MongoClient("mongodb+srv://Admin:admin@cluster0.nrum9.mongodb.net/4SemesterProjekt?retryWrites=true&w=majority")
 db = cluster["4SemesterProjekt"]
@@ -38,15 +37,12 @@ class Bruger():
 
 save_new_user = Bruger().create_user
 
-date = datetime.datetime.now() 
-dt = date.strftime("%d-%m-%Y %H:%M:%S")
-
 class Gem():
     def add_to_database_sandt(self, img, name, author, date, prediction):
-        db.Forudsigelse.insert_one({"Navn": name, "Billed": img, "Forfatter": author, "Oprettelsesdato": dt, "Forudsigelse": "Korrekt"})
+        db.Forudsigelse.insert_one({"Navn": name, "Billed": img, "Forfatter": author, "Oprettelsesdato": date, "Forudsigelse": "Korrekt"})
     
     def add_to_database_falsk(self, img, name, author, date, prediction):
-        db.Forudsigelse.insert_one({"Navn": name, "Billed": img, "Forfatter": author, "Oprettelsesdato": dt, "Forudsigelse": "Ikke korrekt"})
+        db.Forudsigelse.insert_one({"Navn": name, "Billed": img, "Forfatter": author, "Oprettelsesdato": date, "Forudsigelse": "Ikke korrekt"})
 
 add_to_database_sandt = Gem().add_to_database_sandt
 add_to_database_falsk = Gem().add_to_database_falsk

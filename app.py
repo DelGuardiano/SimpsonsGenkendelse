@@ -1,3 +1,4 @@
+from logging import PlaceHolder
 import streamlit as st
 from predict import show_prediction_page
 from statistik import show_statistik_page

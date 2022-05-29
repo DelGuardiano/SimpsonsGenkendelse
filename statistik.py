@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 from dal import Karakterer
-from tensorflow import keras
 from localPath import *
 from PIL import Image
 

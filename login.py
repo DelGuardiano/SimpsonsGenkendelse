@@ -13,8 +13,8 @@ def show_login_page():
     find_user = Bruger().find_user(brugernavn, password)
 
     if find_user == False:
-        if login == True:
-            st.error ("Brugeren findes ikke")
+        if login == True :
+            st.error ("Brugeren findes ikke/password er forkert")
 
         elif opret_ny_bruger == True:
             if brugernavn == "" or password == "":                       
@@ -32,8 +32,7 @@ def show_login_page():
                 
                 st.session_state['Brugernavn'] = brugernavn
                 st.session_state['load_state'] = login
-                
-       
+                      
         elif opret_ny_bruger == True:
             st.error ("Brugeren findes allerede")
 
