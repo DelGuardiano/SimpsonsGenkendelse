@@ -8,13 +8,15 @@ def show_login_page():
     brugernavn = st.text_input("Brugernavn", value="")
     password = st.text_input("Password" , type="password", value="")
     
-    find_user = Bruger().find_user(brugernavn, password)
-    login = st.button("Login")
+    find_userpass = Bruger().find_user_pass(password)
+    find_username = Bruger().find_user_name(brugernavn)
+
+    login = st.button("Login")       
     opret_ny_bruger = st.button("Opret ny bruger")
         
-    if find_user == False:
+    if find_username == False:
         if login:
-            st.error ("Brugeren findes ikke/password er forkert")
+            st.error ("Brugeren findes ikke")
 
         elif opret_ny_bruger:
             if brugernavn == "" or password == "":                       
@@ -23,6 +25,12 @@ def show_login_page():
                 save_new_user(brugernavn, password)
                 st.success("Du er nu oprettet en ny bruger")
 
+    elif find_userpass == False:
+        if login:
+            st.error("Forkert password")
+        
+        elif opret_ny_bruger:
+            st.error("Brugeren findes allerede")
     else:
         if login:                    
                 st.success("Du er logget ind som: {}".format(brugernavn))                   

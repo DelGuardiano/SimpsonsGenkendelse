@@ -28,9 +28,13 @@ class Karakterer():
 labels = Karakterer().get_name() 
 
 class Bruger():        
-    def find_user(self, user, password): 
-        findes = db.Brugere.count_documents({"Brugernavn": user, "Password": password}) > 0
+    def find_user_pass(self, password): 
+        findes = db.Brugere.count_documents({"Password": password}) > 0
         return findes
+
+    def find_user_name(self, user):
+        fidnes = db.Brugere.count_documents({"Brugernavn": user}) > 0
+        return fidnes
 
     def create_user(self, user, password):
         db.Brugere.insert_one({'Brugernavn': user, 'Password': password})

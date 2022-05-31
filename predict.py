@@ -11,7 +11,6 @@ from login import currentuser
 
 model = load_model(modelpath)
 
-
 @st.cache
 def predict(img):
     imgpath = img
@@ -23,12 +22,12 @@ def predict(img):
     os.remove(imgpath)
     return prediction
 
+
 def show_prediction_page():
     st.title("Genkendelse af Simpsons karakterer")
     st.subheader("Forudsigelse af hvilken karakter som er på billedet")
-
     uploaded_file = st.file_uploader("Upload et billed", type=["png", "jpg", "jpeg"])
-    
+
     if uploaded_file is not None:
         st.image(uploaded_file, caption="Billedet du har uploadet")
         with open(uploaded_file.name, "wb") as f:
@@ -56,7 +55,4 @@ def show_prediction_page():
         if falsk:
             st.success("Din forudsigelse er gemt")
             add_to_database_falsk(uploaded_file.name, prediction, author, datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S"), "Falsk")
-            st.balloons()
-
-
-    
+            st.balloons() 
